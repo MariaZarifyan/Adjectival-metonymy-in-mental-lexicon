@@ -1,0 +1,95 @@
+---
+title: "Pure baskets chi-square"
+author: "Maria Zarifyan"
+date: "27 December 2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#https://github.com/cran/RVAideMemoire/blob/master/R/chisq.multcomp.R
+
+chisq.multcomp <-
+function(x,p.method="fdr") {
+  x <- sort(x)
+  fun.p <- function(i,j) {
+    xi <- x[i]
+    xj <- x[j]
+    suppressWarnings(chisq.test(c(xi, xj)))$p.value
+  }
+  tab.p <- pairwise.table(fun.p,as.character(x),p.adjust.method=p.method)
+  call <- match.call()
+  dname.x <- if(length(call$x)==1) {call$x} else {paste(call$x[1],"(",paste(call$x[-1],collapse=","),")",sep="")}
+  result <- list(method="chi-squared tests",data.name=dname.x,p.adjust.method=p.method,p.value=tab.p)
+  class(result) <- "pairwise.htest"
+  return(result)
+}
+```
+
+
+## close-close meton
+LIT = literal, 
+CM1 = close meton 1
+CM2 = close meton 2
+```{r}
+baskets = c(CM1=656, CM2=739, LIT=1142)
+sum(baskets)/3
+```
+
+```{r}
+chisq.test(baskets)
+```
+```{r}
+chisq.multcomp(baskets)
+```
+All three types of baskets are significantly different from each other 
+
+## close-far meton
+LIT = literal, 
+CM = close meton 
+FM = far meton 
+```{r}
+baskets = c(CM=724, FM=957, LIT=852)
+chisq.test(baskets)
+```
+
+```{r}
+chisq.multcomp(baskets)
+```
+All three types of baskets are significantly different from each other 
+
+## close meton
+LIT = literal, 
+METON = meton
+METAPH = metaph
+```{r}
+baskets = c(LIT=921, METON=666, METAPH=1623)
+sum(baskets)
+```
+```{r}
+chisq.test(baskets)
+```
+```{r}
+chisq.multcomp(baskets)
+```
+All three types of baskets are significantly different from each other 
+
+## far meton
+LIT = literal, 
+METON = meton
+METAPH = metaph
+```{r}
+baskets = c(LIT=1227, METON=892, METAPH=1599)
+sum(baskets)
+```
+```{r}
+chisq.test(baskets)
+```
+
+```{r}
+chisq.multcomp(baskets)
+```
+All three types of baskets are significantly different from each other 
