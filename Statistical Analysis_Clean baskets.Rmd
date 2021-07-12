@@ -30,12 +30,12 @@ function(x,p.method="fdr") {
 ```
 
 
-## close-close meton
+## Literal, proximal metonymy-1, proximal metonymy-2
 LIT = literal, 
-CM1 = close meton 1
-CM2 = close meton 2
+PM1 = proximal metonymy 1
+PM2 = proximal metonymy 2
 ```{r}
-baskets = c(CM1=656, CM2=739, LIT=1142)
+baskets = c(PM1=656, PM2=739, LIT=1142)
 sum(baskets)/3
 ```
 
@@ -47,12 +47,12 @@ chisq.multcomp(baskets)
 ```
 All three types of baskets are significantly different from each other 
 
-## close-far meton
+## Literal, proximal metonymy, distal metonymy
 LIT = literal, 
-CM = close meton 
-FM = far meton 
+PM = proximal metonymy
+DM = distal metonymy 
 ```{r}
-baskets = c(CM=724, FM=957, LIT=852)
+baskets = c(PM=724, DM=957, LIT=852)
 chisq.test(baskets)
 ```
 
@@ -61,12 +61,12 @@ chisq.multcomp(baskets)
 ```
 All three types of baskets are significantly different from each other 
 
-## close meton
+## Literal, proximal metonymy, distal metonymy
 LIT = literal, 
-METON = meton
-METAPH = metaph
+METON = metonymy
+METAPH = metaphor
 ```{r}
-baskets = c(LIT=921, METON=666, METAPH=1623)
+baskets = c(LIT=921, metonymy=666, METAPH=1623)
 sum(baskets)
 ```
 ```{r}
@@ -77,10 +77,10 @@ chisq.multcomp(baskets)
 ```
 All three types of baskets are significantly different from each other 
 
-## far meton
+## Literal, distal metonymy, metaphor
 LIT = literal, 
-METON = meton
-METAPH = metaph
+METON = metonymy
+METAPH = metaphor
 ```{r}
 baskets = c(LIT=1227, METON=892, METAPH=1599)
 sum(baskets)
